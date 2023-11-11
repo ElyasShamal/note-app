@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Note from "./Note";
 
 function Main() {
   const [showForm, setShowForm] = useState(false);
@@ -7,41 +8,35 @@ function Main() {
   const toggleClose = () => setShowForm(false);
 
   return (
-    <main className="main">
-      <div className="add-section">
-        {showForm ? (
-          <div className="form-container">
-            <form className="form">
-              <label htmlFor="title">Title:</label>
-              <input type="text" id="title" name="title" />
-
-              <label htmlFor="content">Content:</label>
-              <textarea id="content" name="content"></textarea>
-
-              <button
-                type="submit"
-                style={{
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                  padding: "10px 30px",
-                  fontSize: "16px",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                Submit
+    <div className="container">
+      <main className="main">
+        <div className="add-section">
+          {showForm ? (
+            <div className="form-container">
+              <form className="form">
+                <label htmlFor="title">Title:</label>
+                <input type="text" id="title" name="title" />
+                <label htmlFor="content">Content:</label>
+                <textarea id="content" name="content"></textarea>
+                <button className="submit-btn" type="submit">
+                  Submit
+                </button>
+              </form>
+              <button className="close" onClick={toggleClose}>
+                X
               </button>
-            </form>
-            <button className="close" onClick={toggleClose}>
-              X
-            </button>
-          </div>
-        ) : (
-          <button onClick={toggleForm}>Add Note</button>
-        )}
-      </div>
-    </main>
+            </div>
+          ) : (
+            <div style={{ display: "inline-block", widthl: "100%" }}>
+              <button onClick={toggleForm} className="add-btn">
+                Add Note
+              </button>
+            </div>
+          )}
+        </div>
+      </main>
+      <Note />
+    </div>
   );
 }
 
