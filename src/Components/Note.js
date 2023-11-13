@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import DeleteButton from "./DeleteButton";
 
-function Note() {
+function Note({ newNote, onNoteAdded }) {
   const [Note, setNote] = useState([]);
 
   useEffect(() => {
@@ -16,7 +17,29 @@ function Note() {
     return () => {
       isMouted = false;
     };
-  }, []);
+  }, [newNote, onNoteAdded]);
+
+  const handleDelete = async (noteId) => {
+    try {
+      const response = await fetch(
+        `https://phase-2-backend-json-server-template.onrender.com/Note/${noteId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete note");
+      }
+
+      setNote((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    }
+  };
 
   return (
     <section className="note-section">
@@ -26,7 +49,7 @@ function Note() {
             <div className="notes-container" key={notes.id}>
               <h1>{notes.title}</h1>
               <p>{notes.content}</p>
-              <button className="delete-btn">X</button>
+              <DeleteButton onDelete={() => handleDelete(notes.id)} />
             </div>
           );
         })}

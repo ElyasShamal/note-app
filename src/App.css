@@ -8,7 +8,6 @@
   min-width: 100%;
   min-height: 40vh;
   background-color: lightgray;
-  /* background-color: silver; */
   padding: 0px 20px;
 }
 
@@ -26,9 +25,9 @@
   max-width: 400px;
   margin: auto;
   padding: 20px;
-  /* background-color: white; */
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
   position: relative;
+  z-index: 1;
 }
 
 .form {
@@ -54,7 +53,6 @@
   margin-bottom: 16px;
   height: 200px;
   resize: none;
-  overflow-y: scroll;
 }
 
 .close {
@@ -90,16 +88,17 @@
 }
 
 .note-section {
-  padding-top: 150px;
+  padding-top: 130px;
   min-height: 150vh;
 }
 
 .note-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  width: 80%;
+  width: 90%;
   margin: auto;
   min-height: 600px;
+  grid-gap: 30px;
 }
 
 .notes-container {
@@ -110,7 +109,7 @@
   padding: 10px;
 }
 
-.notes-container button {
+.delete-btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -118,6 +117,7 @@
   color: red;
   font-size: 20px;
   padding: 2px 6px;
+  cursor: pointer;
 }
 
 .notes-container h1 {
@@ -125,6 +125,6 @@
 }
 
 .notes-container p {
-  font-size: large;
+  font-size: 20px;
   width: 100%;
 }
